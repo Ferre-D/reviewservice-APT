@@ -19,10 +19,10 @@ public class ReviewController {
     @PostConstruct
     public void fillDB(){
         if(reviewRepository.count()==0){
-            reviewRepository.save(new Review(1, 1, "Very nice!", 5));
-            reviewRepository.save(new Review( 2, 1, "Not bad...", 3));
-            reviewRepository.save(new Review( 3, 1, "Expected better", 2));
-            reviewRepository.save(new Review( 1, 2, "Looks good...", 3));
+            reviewRepository.save(new Review(1, "1", "Very nice!", 5));
+            reviewRepository.save(new Review( 2, "1", "Not bad...", 3));
+            reviewRepository.save(new Review( 3, "1", "Expected better", 2));
+            reviewRepository.save(new Review( 1, "2", "Looks good...", 3));
         }
         System.out.println("Database filled");
     }
@@ -35,11 +35,11 @@ public class ReviewController {
         return reviewRepository.findReviewsByUserId(userId);
     }
     @GetMapping("/product/{productId}")
-    public List<Review> getReviewsByProductId(@PathVariable Integer productId){
+    public List<Review> getReviewsByProductId(@PathVariable String productId){
         return reviewRepository.findReviewsByProductId(productId);
     }
     @GetMapping("/user/{userId}/product/{productId}")
-    Review getReviewByUserIdAndProductId(@PathVariable Integer userId, @PathVariable Integer productId){
+    Review getReviewByUserIdAndProductId(@PathVariable Integer userId, @PathVariable String productId){
         return reviewRepository.findReviewByUserIdAndProductId(userId, productId);
     }
     @PostMapping("")
@@ -63,7 +63,7 @@ public class ReviewController {
         return toUpdateReview;
     }
     @DeleteMapping("/user/{userId}/product/{productId}")
-    public ResponseEntity deleteReview(@PathVariable Integer userId, @PathVariable Integer productId){
+    public ResponseEntity deleteReview(@PathVariable Integer userId, @PathVariable String productId){
         Review review = reviewRepository.findReviewByUserIdAndProductId(userId, productId);
         if (review == null) return ResponseEntity.notFound().build();
         reviewRepository.delete(review);

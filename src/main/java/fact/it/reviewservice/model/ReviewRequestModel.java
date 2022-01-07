@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ReviewRequestModel {
     private Integer userId;
-    private Integer productId;
+    private String productId;
     private String comment;
     private Integer score;
     private Date createdAt;
@@ -18,11 +18,11 @@ public class ReviewRequestModel {
         this.userId = userId;
     }
 
-    public Integer getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(Integer productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
