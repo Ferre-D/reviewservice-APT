@@ -21,7 +21,7 @@ jobs:
             postgresql version: 'alpine'
             postgresql db: 'APT-review-service'
             postgresql user: 'postgres'
-            postgresql password: 'password'
+            postgresql password: '${{ secrets.POSTGRES_PASSWORD }}'
 
 
 
