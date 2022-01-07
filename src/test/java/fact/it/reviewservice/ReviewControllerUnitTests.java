@@ -42,7 +42,7 @@ public class ReviewControllerUnitTests {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                         .andExpect(status().isOk())
                         .andExpect(jsonPath("$.userId",is(1)))
-                        .andExpect(jsonPath("$.productId",is(2)))
+                        .andExpect(jsonPath("$.productId",is(1)))
                         .andExpect(jsonPath("$.score",is(3)))
                         .andExpect(jsonPath("$.comment",is("Good"))
                         );
@@ -64,11 +64,11 @@ public class ReviewControllerUnitTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].userId",is(1)))
-                .andExpect(jsonPath("$[0].productId",is(1)))
+                .andExpect(jsonPath("$[0].productId",is(2)))
                 .andExpect(jsonPath("$[0].score",is(3)))
                 .andExpect(jsonPath("$[0].comment",is("Good")))
                 .andExpect(jsonPath("$[1].userId",is(1)))
-                .andExpect(jsonPath("$[1].productId",is(2)))
+                .andExpect(jsonPath("$[1].productId",is(3)))
                 .andExpect(jsonPath("$[1].score",is(1)))
                 .andExpect(jsonPath("$[1].comment",is("Bad")));
     }
@@ -87,11 +87,11 @@ public class ReviewControllerUnitTests {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].userId",is(1)))
+                .andExpect(jsonPath("$[0].userId",is(2)))
                 .andExpect(jsonPath("$[0].productId",is(1)))
                 .andExpect(jsonPath("$[0].score",is(3)))
                 .andExpect(jsonPath("$[0].comment",is("Good")))
-                .andExpect(jsonPath("$[1].userId",is(2)))
+                .andExpect(jsonPath("$[1].userId",is(3)))
                 .andExpect(jsonPath("$[1].productId",is(1)))
                 .andExpect(jsonPath("$[1].score",is(1)))
                 .andExpect(jsonPath("$[1].comment",is("Bad")));
