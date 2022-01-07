@@ -1,47 +1,14 @@
 package fact.it.reviewservice.model;
-import java.util.Date;
-import java.util.Objects;
-import javax.persistence.*;
 
-@Entity
-@Table(name="reviews")
-public class Review {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+import java.util.Date;
+
+public class ReviewRequestModel {
     private Integer userId;
     private Integer productId;
     private String comment;
     private Integer score;
     private Date createdAt;
     private Date updatedAt;
-
-    public Review() {
-    }
-
-    public Review(Integer userId, Integer productId, String comment, Integer score) {
-        this.userId = userId;
-        this.productId = productId;
-        this.comment = comment;
-        this.score = score;
-        this.createdAt = new Date();
-    }
-
-    public Review(ReviewRequestModel reviewRequest) {
-        this.userId = reviewRequest.getUserId();
-        this.productId = reviewRequest.getProductId();
-        this.comment = reviewRequest.getComment();
-        this.score = reviewRequest.getScore();
-        this.createdAt = new Date();
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getUserId() {
         return userId;

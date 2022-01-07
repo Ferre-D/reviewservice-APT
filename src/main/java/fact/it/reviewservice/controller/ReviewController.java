@@ -1,6 +1,7 @@
 package fact.it.reviewservice.controller;
 
 import fact.it.reviewservice.model.Review;
+import fact.it.reviewservice.model.ReviewRequestModel;
 import fact.it.reviewservice.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,18 +43,19 @@ public class ReviewController {
         return reviewRepository.findReviewByUserIdAndProductId(userId, productId);
     }
     @PostMapping("")
-    public Review addReview(@RequestBody Review review){
+    public Review addReview(@RequestBody ReviewRequestModel reviewRequest){
+        Review review = new Review(reviewRequest);
         reviewRepository.save(review);
         return review;
     }
     @PutMapping("")
-    public Review updateReview(@RequestBody Review updateReview){
-        Review toUpdateReview = reviewRepository.findReviewByUserIdAndProductId(updateReview.getUserId(), updateReview.getProductId());
+    public Review updateReview(@RequestBody ReviewRequestModel reviewRequest){
+        Review toUpdateReview = reviewRepository.findReviewByUserIdAndProductId(reviewRequest.getUserId(), reviewRequest.getProductId());
 
-        toUpdateReview.setUserId(updateReview.getUserId());
-        toUpdateReview.setProductId(updateReview.getProductId());
-        toUpdateReview.setScore(updateReview.getScore());
-        toUpdateReview.setComment(updateReview.getComment());
+        toUpdateReview.setUserId(reviewRequest.getUserId());
+        toUpdateReview.setProductId(reviewRequest.getProductId());
+        toUpdateReview.setScore(reviewRequest.getScore());
+        toUpdateReview.setComment(reviewRequest.getComment());
         toUpdateReview.setUpdatedAt(new Date());
 
         reviewRepository.save(toUpdateReview);
