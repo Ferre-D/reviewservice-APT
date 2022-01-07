@@ -3,18 +3,18 @@ package fact.it.reviewservice.model;
 import java.util.Date;
 
 public class ReviewRequestModel {
-    private Integer userId;
+    private String userId;
     private String productId;
     private String comment;
     private Integer score;
     private Date createdAt;
     private Date updatedAt;
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
